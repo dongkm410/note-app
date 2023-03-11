@@ -8,3 +8,12 @@ node -v 버전확인
 
 cd 프로젝트 이름
 npm start -> 개발서버를 구 동한다
+
+### json server
+
+npm i -g json-server
+json-server --watch ./src/db/data.json --port 3001
+
+### react router
+
+npm i react-router-dom

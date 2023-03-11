@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/Header';
+import NoteList from './components/NoteList';
+import Write from './components/Write';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Edit from './components/Edit';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>리액트 연습!</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <Routes>
+          <Route path="/" element={<NoteList />} />
+          <Route path="/write" element={<Write />} />
+          <Route path="/edit" element={<Edit />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
-
-export default App;
