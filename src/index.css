@@ -76,6 +76,12 @@ button {
   margin-right: auto;
 }
 
+.note .bottom a {
+  font-size: 26px;
+  display: block;
+  margin-left: 15px;
+}
+
 /* write */
 .container {
   max-width: 500px;

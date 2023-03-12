@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { db } from '../firebase';
 import { doc, deleteDoc } from 'firebase/firestore';
+import { MdMode, MdDelete } from 'react-icons/md';
 
 export default function Note({ note }) {
   console.log(note.date.toDate());
@@ -23,9 +24,11 @@ export default function Note({ note }) {
       <div className="bottom">
         <div className="date">{date}</div>
         <Link to={'/edit'} state={note}>
-          <button>수정</button>
+          <MdMode />
         </Link>
-        <button onClick={remove}>삭제</button>
+        <a href="#x " onClick={remove}>
+          <MdDelete />
+        </a>
       </div>
     </li>
   );
