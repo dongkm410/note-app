@@ -14,6 +14,8 @@ npm start -> 개발서버를 구 동한다
 npm i -g json-server
 json-server --watch ./src/db/data.json --port 3001
 
+?\_sort=date&\_orderdesc
+
 ### react router
 
 npm i react-router-dom
