@@ -1,13 +1,31 @@
 import React from 'react';
 import { useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { db } from '../firebase';
+import { doc, updateDoc } from 'firebase/firestore';
 
 export default function Edit() {
   const navigate = useNavigate();
   const titleRef = useRef();
   const detailRef = useRef();
   const note = useLocation().state;
+
   console.log(note);
+
+  async function edit(e) {
+    e.preventDefault();
+    const noteRef = doc(db, 'notes', note.id);
+    await updateDoc(noteRef, {
+      title: titleRef.current.value,
+      detail: detailRef.current.value,
+    });
+    navigate('/'); //home으로 back
+  }
+  function goBack(e) {
+    e.preventDefault();
+    navigate(-1);
+  }
+
   return (
     <div className="container">
       <h2>노트수정</h2>
@@ -18,7 +36,7 @@ export default function Edit() {
             type="text"
             placeholder="제목..."
             ref={titleRef}
-            defaultValue={`aaa`}
+            defaultValue={note.title}
           />
         </div>
 
@@ -29,13 +47,13 @@ export default function Edit() {
             rows="10"
             placeholder="내용..."
             ref={detailRef}
-            defaultValue={`dddd`}
+            defaultValue={note.detail}
           ></textarea>
         </div>
 
         <div>
-          <button>취소하기</button>
-          <button>수정하기</button>
+          <button onClick={goBack}>취소하기</button>
+          <button onClick={edit}>수정하기</button>
         </div>
       </form>
     </div>
